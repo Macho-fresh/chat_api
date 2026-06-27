@@ -3,6 +3,8 @@ from django.conf import settings
 
 class Group(models.Model):
     group = models.CharField(max_length=150)
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='creator')
+    members = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='members')
 
 class ChatUser(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
